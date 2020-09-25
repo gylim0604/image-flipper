@@ -1,0 +1,2 @@
+FLASK_APP=image_flip.py
+FLASK_DEBUG=1
