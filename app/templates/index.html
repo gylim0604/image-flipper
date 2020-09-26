@@ -1,23 +1,27 @@
-<!doctype html>
-<html>
-  <head>
-    <title>File Upload</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.css">  </head>
-  <body>
-    <h1>File Upload</h1>
-    <form action="{{ url_for('upload_files') }} " class="dropzone">
-    </form>
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h1 style="text-align: center;">File Upload</h1>
+    <div class="file-container">
+      
+      <form action="{{ url_for('upload_files') }} " class="dropzone">
+      </form>
+    </div>
+
     <hr>
-    {% for file in files %}
-      <div>
-        <a href = "{{ url_for('flip' ) }} ">
-          <img src="{{ url_for('upload', filename=file) }}" style="width: 64px">
-        </a>
+      <div id="picture-frame" style="text-align:center;">
+          <img src="{{ url_for('upload', filename=files) }}" style="width: 1024px"><br>
+          <form action="{{url_for('flip') }}" >
+            <input type="submit" value="Flip">
+          </form>
       </div>
       
-    {% endfor %}
     <br>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"></script>
-  </body>
-</html>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.1/min/dropzone.min.js"></script>
+{% endblock %}

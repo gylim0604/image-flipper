@@ -15,7 +15,7 @@ def validate_image(stream):
 
 @app.route('/')
 def index():
-    files = os.listdir(app.config['UPLOAD_PATH'])
+    files = "temp.jpg"
     return render_template('index.html', files=files)
 
 @app.route('/', methods=['POST'])
@@ -40,6 +40,7 @@ def flip():
     new_img = org_img.transpose(method=Image.FLIP_LEFT_RIGHT)
     new_img.save(app.config['UPLOAD_PATH'] + "/" + 'temp.jpg')
     return redirect(url_for('index'))
+    # return send_from_directory("../" + app.config['UPLOAD_PATH'], 'temp.jpg')
 
 @app.errorhandler(413)
 def too_large(e):
